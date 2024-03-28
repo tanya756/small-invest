@@ -400,7 +400,7 @@ select {
     padding: 0px;
     max-width: 1200px;
     @include maxWidth-xl {
-        margin: 0px 65px;
+        //margin: 0px 65px;
     }
     @include maxWidth-lg {
         
@@ -571,9 +571,9 @@ select {
     &-arrow {
         font-size: 0px;
         position: absolute;
-        // top: 50%;
+        top: 50%;
         // transform: translateY(-50%);
-        top: -3px;
+        // top: -3px;
         padding: 0px;
         border-radius: 100%;
         width: 42px;
@@ -595,13 +595,13 @@ select {
         }
     }
     &-prev {
-        left: -35px;
+        left: 10px;
         &:before {
             content: "\f137";
         }
     }
     &-next {
-        right: -35px;
+        right: 10px;
         &:before {
             content: "\f138";
         }
@@ -616,7 +616,7 @@ select {
     }
     @include maxWidth-sm {
         &-arrow {
-            top: -48px;
+            top: 340px;
             width: 26px;
             height: 26px;
             &:before {
@@ -628,6 +628,9 @@ select {
         }
         &-next {
             right: -10px;
+        }
+        &-slide img{
+            max-width: 70%;
         }
     }
 }

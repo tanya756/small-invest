@@ -10,6 +10,7 @@ $baseRed: #c8020d;
 $baseYellow: #fff6bb;
 $baseBlock: #000000;
 $baseWhite: #ffffff;
+$baseGrey:#525252;
 
 #content {
     // overflow-x: hidden;
@@ -346,7 +347,7 @@ body {
     position: fixed;
     top: 50%;
     right: 0;
-    z-index: 1;
+    z-index: 1000;
     transform: translateY(-50%);
     box-shadow: 0 0 10px 5px rgba(#000, 15%);
     ul {
@@ -1612,6 +1613,18 @@ $marginWidth: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60;
 }
 
 // 客制區 ==================================================
+.pcshowmobilehide{
+    @include maxWidth-md{
+        display: none;
+    }
+}
+.pchidemobileshow{
+    display: none;
+    @include maxWidth-md{
+        display: block;
+    }
+}
+
 .banner {
     position: relative;
     height: 650px;
@@ -1620,14 +1633,14 @@ $marginWidth: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60;
     border: 6px solid $baseBlock;
     border-bottom: none;
     h1 {
-        margin: 0 auto;
+        margin: 50px auto 0 auto;
         line-height: 1;
-        // color: $baseBlock;
         text-align: center;
         font-size: 140px;
         text-shadow: 5px 5px $baseWhite;
         line-height: 1.1;
         position: relative;
+        z-index: 999;
         span {
             font-weight: lighter;
         }
@@ -1663,21 +1676,6 @@ $marginWidth: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60;
             width: 47px;
             height: 47px;  
         }
-        // img{
-        //     position: absolute;
-        //     top: 0;
-        //     left: 0;
-        //     width: 65px;
-        //     height: 65px;
-        // }
-        // img {
-        //     position: absolute;
-        //     left: 50%;
-        //     top: 50%;
-        //     transform: translateX(-50%) translateY(-50%);
-        //     display: block;
-        //     height: 100%;
-        // }
     }
     &-flower{
         display: flex;
@@ -1687,14 +1685,13 @@ $marginWidth: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60;
         justify-content: center;
         align-items: flex-end;
         position: relative;
+        z-index: 999;
         img{
             width: calc(100% / 3 - 150px);
-            // max-width: 165px;
-            padding: 15px;
-            // margin: 15px;
+            padding: 0 15px;
         }
-        .flower03{
-            width: calc(100% / 3 - 110px);
+        .flower01,.flower02,.flower03{
+            max-width: 180px;
         }
         .water{
             position: absolute;
@@ -1760,55 +1757,119 @@ $marginWidth: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60;
     &-wave{
         position: absolute;
         width: 100%;
-        height: 80px;
+        height: 100px;
         bottom: 0;
         background-image: url(../images/banner-wave.svg);
         background-repeat: repeat-x;
         background-position: center;
         z-index: 999;
     }
-
-
-
-    // @media screen and (min-width: 1920px) {
-    //     height: auto;
-    //     h1 {
-    //         span {
-    //             // position: absolute;
-    //             // top: 0;
-    //             // left: 0;
-    //         }
-    //         img {
-    //             position: relative;
-    //             left: auto;
-    //             top: auto;
-    //             transform: translateX(0);
-    //             width: 100%;
-    //             height: auto;
-    //         }
-    //     }
-    // }
-    // @include maxWidth-md {
-    //     height: 410px;
-    // }
-    // @include maxWidth-sm {
-    //     height: auto;
-    //     h1 {
-    //         span {
-    //             // position: absolute;
-    //             // top: 0;
-    //             // left: 0;
-    //         }
-    //         img {
-    //             position: relative;
-    //             height: auto;
-    //             width: 100%;
-    //             top: auto;
-    //             left: auto;
-    //             transform: translateX(0);
-    //         }
-    //     }
-    // }
+    @include maxWidth-lg {
+        &-wave{
+            bottom: -28px;
+        }
+    }
+    @include maxWidth-md {
+        h1{
+            font-size: 80px;
+            .wf{
+                font-size: 60px;
+            }
+        }
+        &-flower{
+            width: auto;
+            .flower01,.flower02,.flower03{
+                width: calc(100% / 3 - 100px);
+            }
+            .water{
+                top: 0;
+                left: 0;
+                width: 20%;
+            }
+            .airplane{
+                top: -200px;
+                left: 0%;
+                width: 25%;
+            }
+        }
+        &-wave{
+            bottom: -25px;
+        }
+    }
+    @include maxWidth-sm {
+        h1{
+            .wf{
+                font-size: 32px;
+                letter-spacing: 0px;
+                background-color: $baseBlock;
+                margin: 0 37px;
+                padding: 8px;
+                border-radius: 50px;
+                font-weight: lighter;
+            }
+        }
+        &-flower{
+            .flower01,.flower02,.flower03{
+                width: calc(100% / 3 - 10px);
+            }
+            .water{
+                top: -250px;
+                left: -8%;
+                width: 35%;
+            }
+            .airplane{
+                display: none;
+            }
+        }
+        &-arrow{
+            &-box{
+                img{
+                    top: 0px;
+                    width: 20%;
+                }
+                img:nth-child(2n){
+                    top: 200px;
+                    left: 5%;
+                    width: 25%;
+                }
+                img:nth-child(3n){
+                    top: 350px;
+                    left: 15%;
+                    width: 22%;
+                }
+                img:nth-child(4){
+                    right: 20%;
+                    left: auto;
+                    top: 140px;
+                    width: 20%;
+                }
+                img:nth-child(5){
+                    right: 5%;
+                    width: 25%;
+                    top: 45px;
+                }
+                img:nth-child(6){
+                    right: 17%;
+                    width: 10%;
+                    top: 420px;
+                }
+                img:nth-child(7){
+                    right: 5%;
+                    width: 15%;
+                    top: 500px;
+                }
+            }
+        }
+        &-wave{
+            bottom: 0;
+            height: 26px;
+        }
+    }
+}
+@include maxWidth-md {
+    .banner {
+        height: auto;    
+    }
 }
 
 .description {
@@ -1826,6 +1887,7 @@ $marginWidth: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60;
         p{
             font-size: 22px;
             font-weight: 600;
+            text-align: justify; 
             span{
                 color: $baseOrange;
             }
@@ -1845,12 +1907,32 @@ $marginWidth: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60;
             right: 100px;
         }
     }
-    // @include maxWidth-sm {
-    //     padding: 20px 0;
-    // }
+    @include maxWidth-md {
+        &-box{
+            width: 100%;
+            padding: 10px 30px;
+            p{
+                font-size: 18px;
+            }
+        }
+    }
+    @include maxWidth-sm {
+        &-box{
+            border-radius: 35px;
+            padding: 10px;
+            box-shadow: #ffffff 0px 10px, $baseBlock 0px 10px 0 3px;
+            border: 3px solid $baseBlock;
+            p{
+                font-weight: 300;
+            }
+            &::before,&::after{
+                border: 3px solid $baseBlock;
+            }
+        }
+    }
 }
 
-.intro,.time,.explain{
+.intro,.time,.explain,.fee,.proscons,.step{
     .tit-type1{
         color: $baseWhite;
         font-weight: 600;
@@ -1878,6 +1960,42 @@ $marginWidth: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60;
             -webkit-text-stroke-color: $baseOrange;
         }
     }
+
+    .pcshowmobilehide{
+        color: $baseWhite;
+        font-weight: 600;
+        letter-spacing: 3px;
+        font-size: 48px;
+        &.tit-type1::before{
+            content: "零股是什麼？和整股哪裡不一樣？";
+            position: absolute;
+            z-index: -1;
+            -webkit-text-stroke-width: 10px;
+            -webkit-text-stroke-color: $baseGreen; 
+        }
+        &.tit-type1 span::before{
+            content: "零股";
+            position: absolute;
+            z-index: -1;
+            -webkit-text-stroke-width: 11px;
+            -webkit-text-stroke-color: $baseOrange;
+        }
+        &.tit-type1 .tsc::before{
+            content: "整股";
+            position: absolute;
+            z-index: -1;
+            -webkit-text-stroke-width: 11px;
+            -webkit-text-stroke-color: $baseOrange;
+        }
+    }
+    .pchidemobileshow{
+        &.tit-type1::before{
+            content: "零股是什麼？\A和整股哪裡不一樣？";
+            white-space:pre;
+            margin-left: -77px;
+        }
+    }
+
     .tag{
         text-align: center;
         color: $baseGreen;
@@ -1918,7 +2036,8 @@ $marginWidth: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60;
                 border-radius: 20px;
                 padding: 20px; 
                 img{
-                    padding: 20%;
+                    padding: 40px;
+                    width: 50%;
                 }
                 li{
                     // color: $baseBlock;
@@ -1953,8 +2072,52 @@ $marginWidth: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60;
             margin-bottom: 10px;
         }
     }
+    @include maxWidth-md {
+        &-content{
+            padding: 70px 0 30px 0;
+        }
+        &-ex{
+            padding: 0;
+        }
+    }
+    @include maxWidth-sm {
+        .tit-type1{
+            font-size: 36px;
+            color: $baseGreen;
+            text-shadow:2px 3px 0 $baseWhite;
+            span{
+                color: $baseOrange;
+            }
+            &.tit-type1::before, &.tit-type1 span::before{
+                display: none;
+            }
+        }
+        .tag{
+            font-size: 24px;
+            color: $baseBlock;
+            font-weight: lighter;
+        }
+        &-content{
+            flex-direction: column;
+            &-card{
+                width: 100%;
+                margin: 0;
+            ul{
+                background-color: $baseGreen;
+                border-radius: 20px;
+                padding: 20px; 
+                li{
+                    font-size: 20px;
+                    span{
+                        color: $baseOrange;
+                    }
+                }
+            }
+            }
+        }
+    }
 }
-.time,.explain{
+.time,.explain,.fee{
     background-color: $baseYellow; 
     z-index: -2;
     .tit-type1{
@@ -1965,7 +2128,7 @@ $marginWidth: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60;
             content: "交易時間";
         }  
     }
-    p{
+    p,ul{
         padding: 0 20%;
     }
     .titbox{
@@ -1999,7 +2162,6 @@ $marginWidth: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60;
             background-color: $baseGreen;
             border: 3px solid $baseBlock;
             border-radius: 20px;
-            // width: 0 20%;
             border-collapse: separate;
             border-spacing: 0;
             tr{
@@ -2024,6 +2186,28 @@ $marginWidth: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60;
             }
         }
     } 
+    @include maxWidth-md {
+        p,ul{
+            padding: 0;
+        }
+        .titbox{
+            padding: 0;
+        }
+        &-content{
+            padding: 0px 0 30px 0;
+        }
+    }
+    @include maxWidth-sm {
+        &-content{
+            table{
+                tr{
+                    td{
+                        padding: 20px;
+                    }
+                }
+            }
+        } 
+    }
 }
 .explain{
     background-color: $baseWhite;
@@ -2078,6 +2262,324 @@ $marginWidth: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60;
                     }
                 }
             }
+        }
+    }
+}
+.fee{
+    background-color: $baseGreen; 
+    z-index: -2;   
+    .tit-type1{
+        color: $baseBlock;
+        &.tit-type1::before{
+            content: "零股手續費";
+            z-index: -1;
+            -webkit-text-stroke-width: 11px;
+            -webkit-text-stroke-color: $baseYellow;
+        } 
+    }
+    ul{
+        color: $baseWhite;
+        li{
+            list-style-type: none;
+            line-height: 2.6;
+            span{
+                color: $baseBlock;
+                background-color: $baseYellow;
+                border-radius: 50px;
+                padding: 5px 10px ;
+            }
+        }
+    }
+    &-content{
+        border: 6px solid $baseBlock;
+        background-color: $baseWhite;
+        border-radius: 20px;
+        display: block;
+        margin: 60px 17%;
+        padding: 35px 50px;
+        position: relative;
+        text-align: center;
+        &-tit{
+            color: $baseWhite;
+            background-color: $baseBlock;
+            padding: 5px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            // top: -20px;
+            // left: calc(50% - 80px);
+            font-size: 24px;
+            position: absolute;
+            inset: -28px auto auto 50%;
+            transform: translateX(-50%);
+        }
+        p{
+            color: $baseGreen;
+        }
+        table{
+            border: 6px solid $baseBlock;
+            background-color: $baseWhite;
+            border-radius: 10px;
+            width: 100%;
+            border-spacing: 0;
+            margin: 50px 0;
+            text-align: center;
+            tr{
+                th{
+                    background-color: $baseBlock;
+                    color: $baseWhite;
+                    width: 10%;
+                }
+                td{
+                    text-align: center;
+                    padding: 20px;
+                    line-height: 2.2;
+                    border-bottom: 1px solid $baseBlock;
+                    .name{
+                        border-bottom: 1px solid $baseBlock;
+                        display: inline-block;
+                        margin-bottom: 20px;
+                    }
+                    span{
+                        color: $baseOrange;
+                    }
+                }
+            }
+        }
+    }
+    p{
+        span{
+            color: $baseYellow;
+        }
+    }
+    @include maxWidth-md {
+        &-content{
+            margin: 60px 0;
+            padding: 0px 20px;
+        }
+    }
+    @include maxWidth-sm {
+        ul{
+            li{
+                line-height: 2;
+            }
+        }
+        &-content{
+            border: 3px solid $baseBlock;
+            &-tit{
+                padding: 5px 22px;
+            }
+            table{
+                border: 3px solid $baseBlock;
+            }
+        }
+
+    }
+}
+.proscons{
+    .tit-type1{
+        color: $baseWhite;
+        font-weight: 600;
+        &.tit-type1::before,&.tit-type1 span::before{
+            content: "零股";
+            position: absolute;
+            z-index: -1;
+            -webkit-text-stroke-width: 10px;
+            -webkit-text-stroke-color: $baseBlock; 
+        }
+        &.tit-type1 span::before{
+            content: "優缺點";
+            -webkit-text-stroke-color: $baseOrange; 
+        }  
+    }
+    &-pros,&-cons{
+        margin: 50px 0;
+        &-tit{
+            font-weight: 300;
+            margin:50px 0 20px 0;
+            display: inline-block;
+            padding: 8px 45px 8px 45px;
+            border: 3px solid $baseBlock;
+            box-shadow: $baseGreen 5px 5px, $baseBlock 5px 5px 0 3px;
+            font-size: 32px;
+            position: relative;
+            // top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(8deg);
+            span{
+                color: $baseOrange;
+            }
+        }
+        &-tit::before {
+            position: absolute;
+            // top: 50%;
+            bottom: -80%;
+            left: 21px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 19px;
+            border-color: $baseBlock transparent transparent transparent;
+            content: "";
+            transform: translateY(-50%);
+          }
+          &-tit::after {
+            position: absolute;
+            // top: 50%;
+            bottom: -65%;
+            left: 23px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 16px;
+            border-color: $baseWhite transparent transparent transparent;
+            content: "";
+            transform: translateY(-50%);
+          }
+        &-content{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            .card{
+                background-color: $baseGreen;
+                border: 3px solid $baseBlock;
+                border-radius: 10px;
+                padding: 30px 20px 20px 20px;
+                margin: 10px;
+                position: relative;
+                width: calc(100% / 4);
+                max-width: 25%;
+                &-tit{
+                    color: $baseWhite;
+                    background-color: $baseBlock;
+                    border-radius: 50px;
+                    font-size: 22px;
+                    padding: 5px 20px;
+                    position: absolute;
+                    inset: -28px auto auto 50%;
+                    transform: translateX(-50%);
+                    white-space: nowrap;
+                }
+                &-img{
+                    width: 50%;
+                    margin: 0 auto;
+                    padding: 50px;
+                }
+                &-text{
+                    color: $baseBlock;
+                    span{
+                        color: $baseWhite;
+                    }
+                }
+            }
+        }
+    }
+    @include maxWidth-md {
+        &-pros,&-cons{
+            &-content{
+                flex-wrap: wrap;
+                .card{
+                    width: 35%;
+                    max-width: 35%;
+                    margin-bottom: 50px;
+                }
+            }
+        }  
+    }
+    @include maxWidth-sm {  
+        .tit-type1{
+            color: $baseGreen;
+        }
+        &-pros,&-cons{
+            &-content{
+                flex-direction: column;
+                .card{
+                    width: 80%;
+                    max-width: 80%;
+                    margin: 10px auto 50px auto;
+                }
+            }
+        }
+    }    
+}
+.step{
+    background-color: $baseYellow;
+    // z-index: -2;
+    .tit-type1{
+        // color: $baseWhite;
+        color: $baseGreen;
+        // &.tit-type1::before{
+        //     content: "零股推薦凱基證券！\A APP只要4步驟快速下單好方便！";
+        //     white-space:pre;
+        //     z-index: -1;
+        //     -webkit-text-stroke-width: 11px;
+        //     -webkit-text-stroke-color: $baseGreen;
+        //     margin-left: -145px;
+        // } 
+    }
+    .stepbtn{
+        color: $baseOrange;
+        font-size: 30px;
+        // margin: 0 auto;
+    }
+    h5{
+        border-bottom: 1px solid  $baseBlock;
+        display: inline-block;
+        font-size: 24px;
+        font-weight: lighter;
+    }
+}
+.QA{
+    h2{
+        color: $baseGreen;
+    }
+    details {
+        background-color: $baseWhite;
+        padding: 10px 20px;
+        margin: 20px 0;
+        border-bottom: 1px solid $baseOrange;
+        summary {
+            list-style-type: none;
+            position: relative;
+            cursor: pointer;
+            color: $baseOrange;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 20px;
+            &::before {
+                position: absolute;
+                right: 0;
+                content: '';
+                border: solid $baseOrange;
+                border-width: 0 3px 3px 0;
+                display: inline-block;
+                padding: 5px;
+                transform: rotate(45deg);
+                transition: all 0.5s ease 0s;
+            }
+            &::-webkit-details-marker ,
+            &::marker {
+                display:none;
+            }
+            h3{
+                font-size: 24px;
+                font-weight: lighter;
+                margin: 0;
+                padding: 0;
+            }
+        }
+        p{
+            color: $baseGrey;
+            font-size: 18px;
+        }
+    }
+    details[open] summary::before {
+        transform: rotate(-135deg);
+        transition: all 0.5s ease 0s;
+    }
+    @include maxWidth-sm {
+        details summary h3{
+            font-size: 18px;
         }
     }
 }

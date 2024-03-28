@@ -1,1 +1,1 @@
-# kgiWedTemplate 凱證活動頁template
+# small-invest 零股聰明買實現小額投資
